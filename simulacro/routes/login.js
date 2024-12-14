@@ -11,11 +11,18 @@ router.post('/', async (req, res) => {
   if(await database.user.isLoginRight(user, req.body.pass)){
     req.session.user = {username: user};
     req.session.message = "¡Login correcto!"
+    database.user.data[req.session.user.username].cookies = req.session.cookies;
     res.redirect("restricted");
-  } else {
+    } else {
     req.session.error = "Incorrect username or password.";
     res.redirect("login");
   }
 });
+
+router.post('/cookies', async (req, res) => {
+  req.session.cookies = req.body.cookiesAceptadas;   
+  res.json({cookies: req.session.cookies});
+});
+
 
 module.exports = router;

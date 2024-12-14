@@ -5,11 +5,11 @@ const cookies = document.getElementById('cookies');
 aceptar.addEventListener('click', () => {
     cookies.style.display = 'none';
     const cookiesAceptadas = true;
-    fetch('/cookies', {
+    fetch('/login/cookies', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ cookiesAceptadas })
-        })
+        });
 });
