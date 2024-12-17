@@ -3,8 +3,6 @@ const bcrypt = require('bcrypt');
 users = {};
 
 users.data = {};
-let cookies = false;
-
 
 users.generateHash = function(password, callback){
     bcrypt.hash(password, 10, callback);
@@ -22,7 +20,7 @@ users.register = function(username, password){
         if(err){
             throw new Error(`Error al generar el hash de ${username}.`);
         }
-        users.data[username] = {username, hash, last_Login: new Date().toISOString, cookies};
+        users.data[username] = {username, hash, last_Login: new Date().toISOString};
     });
 }
 

@@ -9,6 +9,7 @@ const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const tiendaRouter = require('./routes/tienda');
 const restrictedRouter = require('./routes/restricted');
+const chatRouter = require('./routes/chat');
 
 const app = express();
 // view engine setup
@@ -45,9 +46,14 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/tienda', tiendaRouter);
 app.use('/restricted', restricted, restrictedRouter);
+app.use('/chat', chatRouter);
 app.use('/logout', (req,res) =>{
   req.session.destroy();
   res.redirect("/");
+});
+app.use('/cookies', (req,res) =>{
+  req.session.cookies = req.body.cookiesAceptadas;   
+  res.json({cookies: req.session.cookies});
 });
 
 function restricted(req, res, next){

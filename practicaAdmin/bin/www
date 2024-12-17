@@ -4,16 +4,17 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('ejemplologin:server');
-var http = require('http');
+const app = require('../app');
+const debug = require('debug')('expresslogin:server');
+const http = require('http');
 const database = require('../database');
-const { Server } = require("socket.io");
+
 /**
  * Get port from environment and store in Express.
  */
+const port = normalizePort(process.env.PORT || '3000');
+  
 
-var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
@@ -21,17 +22,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-const io = new Server(server);
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.on('chat', (msg) => {
-    console.log('message: ' + msg);
-    io.emit('chat', msg);
-  });
-  socket.on('disconnect', () => {
-  console.log('user disconnected');
-  });
-});
+
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -97,5 +88,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  console.log('Listening on ' + bind);
 }
