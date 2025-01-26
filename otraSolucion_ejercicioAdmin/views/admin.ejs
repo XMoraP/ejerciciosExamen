@@ -44,7 +44,15 @@
 
 </table>
 
-
+<form id="formulario">
+  <label for="nombre"></label>
+  <input type="text" name="name" id="name" placeholder="name" required><br>
+  <label for="genero"></label>
+  <input type="text" name="genero" id="genero" placeholder="genero" required><br>
+  <label for="descripcion"></label>
+  <input type="text" name="descripcion" id="descripcion" placeholder="descripcion"><br>
+  <button type="submit" form="formulario">Submit</button>
+</form>
 
 
 <%- include("footer", {}) %>

@@ -22,4 +22,9 @@ router.post('/deleteUser',function(req, res, next) {
 
   );
 
+router.post('/games', function(req, res, next){
+  const datos = req.body;
+  console.log(datos);
+});
+
 module.exports = router;
