@@ -4,8 +4,9 @@ const NAMES = ["juan", "ana", "rodrigo", "maria"];
 
 const database = {};
 database.users = {};
-
 database.users.data = {};
+database.games = {}; //Trabajar con este objeto
+
 database.users.generateHash = function(pass, callback){
     bcrypt.hash(pass, 10, callback);
 }
@@ -38,6 +39,7 @@ function initializeUsers(){
         database.users.register(username, "1234", "user");
     });
     console.log("Database initialized");
+    console.log(database);
     
 }
 
