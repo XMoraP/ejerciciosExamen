@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     formulario.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const name = document.getElementById('name');
+        const nombre = document.getElementById('name');
         const genero = document.getElementById('genero');
         const descripcion = document.getElementById('descripcion');
 
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             headers: { 'content-type': 'application/json'},
             body: JSON.stringify({
-                name: name.value,
+                nombre: nombre.value,
                 genero: genero.value,
                 descripcion: descripcion.value
             })

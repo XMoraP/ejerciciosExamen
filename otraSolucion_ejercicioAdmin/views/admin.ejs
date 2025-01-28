@@ -29,7 +29,7 @@
         <button name="username" value='<%=usuarios[nombreUsuario].username %>'>delete</button>
       </form> 
 
-  <% } %>
+    <% } %>
 </td>
 </tr>
 
@@ -53,6 +53,29 @@
   <input type="text" name="descripcion" id="descripcion" placeholder="descripcion"><br>
   <button type="submit" form="formulario">Submit</button>
 </form>
+
+<table> 
+  <tr>
+    <th>Nombre</th>
+    <th>Genero</th>
+    <th>Descripcion</th>
+    <th>Fecha</th>
+    <th>Borrar</th>
+  </tr>
+  <% for (let nombre in games) { %>
+  <tr>
+    <td><%= games[nombre].nombre %></td>
+    <td><%= games[nombre].genero %></td>
+    <td><%= games[nombre].descripcion %></td>
+    <td><%= games[nombre].fecha %></td>
+    <td>
+      <form action="/admin/games/remove" method="post">
+        <button type="submit" name="btn" value="<%= games[nombre].nombre%>">Delete</button>
+      </form>
+    </td>
+  </tr>
+  <% } %>
+</table>
 
 
 <%- include("footer", {}) %>

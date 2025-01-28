@@ -1,10 +1,11 @@
 let express = require('express');
 let router = express.Router();
 const database = require('../database');
+const { name } = require('ejs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('admin', { title: 'Admin',usuarios:database.users.data ,logged_user: req.session.user});
+  res.render('admin', { title: 'Admin', usuarios:database.users.data ,logged_user: req.session.user, games: database.games});
 });
 
 router.post('/deleteUser',function(req, res, next) {
@@ -23,8 +24,20 @@ router.post('/deleteUser',function(req, res, next) {
   );
 
 router.post('/games', function(req, res, next){
-  const datos = req.body;
-  console.log(datos);
+  const name = req.body.nombre;
+  const genero = req.body.genero;
+  const descripcion = req.body.descripcion;
+  if (name){
+    database.games.saveGames(name, genero, descripcion);
+  }
+  console.log(database.games);
+  res.redirect('/admin');
+});
+
+router.post('/games/remove', function(req, res){
+  const nombre = req.body.btn; 
+  database.games.remove(nombre);
+  res.redirect('/admin');
 });
 
 module.exports = router;
